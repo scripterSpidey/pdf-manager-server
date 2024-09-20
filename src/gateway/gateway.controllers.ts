@@ -1,6 +1,8 @@
 import { Response, Request, NextFunction } from "express";
 import { downloadPDF, uploadPDF } from "../application/app.controllers";
 
+
+// handler for uploading pdf files
 export const onUploadPDF = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const file = req.file;
@@ -13,6 +15,7 @@ export const onUploadPDF = async (req: Request, res: Response, next: NextFunctio
     }
 }
 
+//handler for retreiving the modified pdf files.
 export const onDownloadPDF = async (req: Request, res: Response, next: NextFunction) => {
     const { fileName } = req.params;
     downloadPDF(fileName)

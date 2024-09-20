@@ -21,6 +21,13 @@ export const uploadPDF = async (file: Express.Multer.File, selectedPages: number
     return { fileName }
 }
 
+
+/**
+ * 
+ * @param fileName name of the file
+ * @returns the pdf in binary format
+ */
+
 export const downloadPDF = async ( fileName: string ) => {
     
     const filePath = path.join(__dirname, '../assets', fileName);
