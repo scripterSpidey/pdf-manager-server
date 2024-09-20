@@ -19,9 +19,9 @@ app.use(
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'))
 
-app.get('/',(req,res)=>res.send('You are all set'))
+app.get('/pdfManager',(req,res)=>res.send('You are all set'))
 
-app.use('/user',userRoutes)
+app.use('/pdfManager/user',userRoutes)
 
 app.use(handleError)
 
