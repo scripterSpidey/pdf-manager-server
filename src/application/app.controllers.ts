@@ -15,9 +15,13 @@ export const uploadPDF = async (file: Express.Multer.File, selectedPages: number
     const fileName = crypto.randomBytes(3).toString('hex') + '_' + file.originalname;
 
     const filePath = path.join(__dirname, '../assets', fileName);
-
-    fs.writeFileSync(filePath, modifiedPDF);
-
+    try {
+        fs.writeFileSync(filePath, modifiedPDF);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+        console.log(error)
+        throw new Error('INTERNAL_SERVER_ERROR')
+    }
     return { fileName }
 }
 
@@ -28,8 +32,8 @@ export const uploadPDF = async (file: Express.Multer.File, selectedPages: number
  * @returns the pdf in binary format
  */
 
-export const downloadPDF = async ( fileName: string ) => {
-    
+export const downloadPDF = async (fileName: string) => {
+
     const filePath = path.join(__dirname, '../assets', fileName);
 
     return new Promise((res, rej) => {
